@@ -28,12 +28,12 @@ export class DataService {
 	  	JSON.parse(responseData).forEach(([name, price]) => {
 	  		if (this.webSocketData[name]) {
 	  			this.webSocketData[name].demand = this.webSocketData[name].price < price ? ">" : "<" ;
-	  			this.webSocketData[name].price = price;
+	  			this.webSocketData[name].price = price.toFixed(2);
 	  			this.webSocketData[name].updatedTime = Math.abs(new Date().getTime() - this.webSocketData[name].updatedTime);
 	  			this.webSocketData[name].time = new Date();
 	  		} else {
 				this.webSocketData[name] = {
-					"price" : price,
+					"price" : price.toFixed(2),
 					"name" : name,
 					"updatedTime": new Date().getTime(),
 					"time": new Date()
